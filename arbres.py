@@ -32,19 +32,65 @@ class AB:
         else:
             return False
 
+    # La taille d'un arbre est le nombre de noeuds de l'arbre
     def taille(self):
-        if self.estVide():
-            return 0
-        else:
-            return 1 + self.gauche.taille() + self.droite.taille()
-            
+        taille = 0
+        if self.getGauche() != None:
+            taille += self.getGauche().taille()
+        if self.getDroite() != None:
+            taille += self.getDroite().taille()
+        return taille + 1
 
-# Default values
-# A1 = AB(None, None, None)
+    # Parcours prefixe : on visite la racine, puis le sous-arbre gauche, puis le sous-arbre droit
+    def prefixe(self):
+        parcours_prefixe = ""
+        if self.getGauche() != None:
+            parcours_prefixe += self.getGauche().prefixe()
+        if self.getDroite() != None:
+            parcours_prefixe += self.getDroite().prefixe()
+        parcours_prefixe += str(self.getRacine()) + " "
+        return parcours_prefixe
 
-# A3 = AB(3, None, None)
+    # La hauteur d'un arbre est la longueur du plus long chemin entre la racine et une feuille
+    def hauteur(self):
+        hauteur = 0
+        if self.getGauche() != None:
+            hauteur += self.getGauche().hauteur()
+        if self.getDroite() != None:
+            hauteur += self.getDroite().hauteur()
+        return hauteur + 1
 
-# A2 = AB(5, A3, None)
+    # ABR = Arbre Binaire de Recherche 
+    # soit un arbre binaire dont les valeurs des noeuds de l'arbre sont ordonnées
+    def estABR(self):
+        if self.getGauche() != None:
+            if str(self.getGauche().getRacine()) > str(self.getRacine()):
+                return False
+            else:
+                self.getGauche().estABR()
+        if self.getDroite() != None:
+            if str(self.getDroite().getRacine()) < str(self.getRacine()):
+                return False
+            else:
+                self.getDroite().estABR()
+        return True
+
+    # Un arbre binaire est équilibré si la différence de hauteur 
+    # entre les sous-arbres gauche et droit est inférieure ou égale à 1
+    def estEquilibre(self):
+        if self.getGauche() != None:
+            self.getGauche().estEquilibre()
+        if self.getDroite() != None:
+            self.getDroite().estEquilibre()
+        if self.getGauche() != None and self.getDroite() != None:
+            if self.getGauche().hauteur() - self.getDroite().hauteur() > 1:
+                return False
+        return True
+        
+
+# A3 = AB(3)
+
+# A2 = AB(5, A3)
 
 #           Arbre a représente l'arbre suivant :
 #
@@ -55,23 +101,28 @@ class AB:
 #              3   8   
 #
 
-A1 = AB(5, 3, 8)
+#
+A1 = AB(5, AB(3), AB(8))
 
 A2 = AB(12)
 
-# A3 = AB(5, None, None)
+A3 = AB(5)
 
-Atest = AB(10, A1, A2)
+Atest = AB(10, AB(A1), AB(A2))
 
-# Atest.estVide() 
+# Verifions que les méthodes fonctionnent bien
+# print(Atest.estVide())
 
-print(Atest.taille())
+# print(Atest.taille())
 
+# print(Atest.hauteur())
+
+print(Atest.prefixe())
+
+# print(Atest.estABR())
+
+# print(Atest.estEquilibre())
 
 # A1.estVide()
 
 # A2.estVide()
-
-
-
-
