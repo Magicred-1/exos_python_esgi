@@ -1,4 +1,5 @@
 from math import sqrt
+import random
 
 # Premier Breakpoint
 # Exercice 1
@@ -124,5 +125,94 @@ def afficherCaracteresChaine(chaine: str, liste: list):
         if liste[k] % 2 == 0:
             print(liste[k])
 
-afficherCaracteresChaine("Bonjour", [34, 56, 78, 90, 245, 456, 3553])
+# afficherCaracteresChaine("Bonjour", [34, 56, 78, 90, 245, 456, 3553])
 
+# Exercice 15
+
+def liste(liste = [17, 38, 10, 25, 72]):
+    
+    sorted(liste)
+
+    print(f"La liste trié : {liste}\n")
+
+    liste.append(12)
+
+    print(f"La liste avec l'élément 12 : {liste}\n")
+
+    liste.reverse()
+
+    print(f"La liste inversé : {liste}\n")
+
+    for i in range(0, len(liste)):
+        if liste[i] == 17:
+            print(f"La valeur 17 est à l'index {i}\n")
+
+    liste.remove(38)
+
+    print(f"La liste sans l'élément 38 : {liste}\n")
+
+    print(f"La sous liste du 2ème au 3ème élément: {liste[1:3]}\n")
+
+    print(f"La sous liste du 2ème au dernier élément: {liste[1:]}\n")
+
+    print(f"La sous liste complète de la liste: {liste[:]}")
+
+# liste()
+
+# Exercice 16
+def inverseChaine(chaine: str):
+    print(chaine[::-1])
+
+# inverseChaine("Bonjour")
+
+# Exercice 17
+def palindrome(chaine: str):
+    if chaine == chaine[::-1]:
+        print(f"{chaine} est un palindrome !")
+    else:
+        print(f"{chaine} n'est pas un palindrome !")
+
+# palindrome("kayak")
+# palindrome("moralez")
+
+# Exercice 18
+def chaineEmail(email: str):
+    # contains @ and .com + 3 characters after .
+    if "@" in email and "." and len(email[email.index(".") + 1:]) == 3:
+        print(f"{email} est une adresse mail valide !")
+    else:
+        print(f"{email} n'est pas une adresse mail valide !")
+
+# chaineEmail("djasongadiou@gmail.d")
+# chaineEmail("papyfaitdelaresistance@gmail.com")
+
+# Exercice 19
+def iniatialisationListe():
+    liste = []
+
+    for i in range(5):
+        liste.append(random.uniform(1.0, 10.0))
+
+    return liste
+
+# print(iniatialisationListe())
+
+# Exercice 20
+def affichageRange():
+    for i in range(0, 3):
+        print(i)
+
+    for j in range(4, 7):
+        print(j)
+
+    for k in range(2, 8, 2):
+        print(k)
+
+    chose = [1, 2, 3, 4, 5]
+
+    if 3 in chose and 6 in chose:
+        print("3 et 6 sont dans chose")
+    elif 3 in chose:
+        print("3 est dans chose")
+
+# affichageRange()
