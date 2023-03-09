@@ -1,5 +1,7 @@
-from math import sqrt
+import math
 import random
+import re
+import os
 
 # Premier Breakpoint
 # Exercice 1
@@ -127,6 +129,8 @@ def afficherCaracteresChaine(chaine: str, liste: list):
 
 # afficherCaracteresChaine("Bonjour", [34, 56, 78, 90, 245, 456, 3553])
 
+# Breakpoint 3
+
 # Exercice 15
 
 def liste(liste = [17, 38, 10, 25, 72]):
@@ -216,3 +220,65 @@ def affichageRange():
         print("3 est dans chose")
 
 # affichageRange()
+
+# Breakpoint 4
+
+# Exercice 21
+
+def writeFile(filename: str = "data.txt"):
+    saisie = int(input("Saisie un nombre : "))
+
+    with open(filename, "w") as f:
+        for i in range(saisie):
+            f.write(f"Chaine n°{i+1}\n")
+
+# writeFile()
+
+# Exercice 22
+
+def readFile(filename: str = "data.txt"):
+    if not os.path.exists(filename):
+        print(f"Le fichier {filename} n'existe pas !\nCréation du fichier {filename}...\n")
+        writeFile()
+    with open(filename, "r") as f:
+        for line in f:
+            # regex to check if the end of line contains @ and .com
+            regex = re.search(r"@\w+\.com$", line)
+            if regex is not None:
+                print(f"Mail trouvé dans la ligne {line} du fichier {filename}")
+            else:
+                print(f"Pas de mail dans la ligne {line} du fichier {filename}")
+        
+# readFile()
+
+# Exercice 23
+
+def compterMots(filename: str = "data.txt"):
+    if not os.path.exists(filename):
+        print(f"Le fichier {filename} n'existe pas !\nCréation du fichier {filename}...\n")
+        writeFile()
+    with open(filename, "r") as f:
+        for line in f:
+            if len(line.split()) > 0:
+                print(f"Il y a {len(line.split())} mots dans la ligne {line}")
+
+# compterMots()
+
+def volumeSphere(r: float):
+    volume = (4/3 * math.pi * r**3)
+
+    return volume
+
+# print(volumeSphere(2))
+# print(volumeSphere(3.34))
+# print(volumeSphere(5.67))
+
+def somme(a: int, b: int, c: int):
+    somme = a + b + c
+
+    tuple_ = (a, b, c)
+
+    # decompress tuple
+    print(f"La somme de {tuple_[0]}, {tuple_[1]} et {tuple_[2]} est égale à {somme}")
+
+# somme(1, 2, 3)
