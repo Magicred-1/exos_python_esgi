@@ -5,9 +5,9 @@ class AB:
             self.droite = droite
 
 
-    # Override de la méthode str pour afficher les attributs de l'objet
-    def __str__(self):
-        return "Racine : {}\n Gauche :\n\t\t {}\n Droite :{} \n\t\t".format(self.racine, self.gauche, self.droite)
+    # # Override de la méthode str pour afficher les attributs de l'objet
+    # def __str__(self):
+    #     return "Racine : {}\n Gauche :\n\t\t {}\n Droite :{} \n\t\t".format(self.racine, self.gauche, self.droite)
 
     def setGauche(self, gauche):
         self.gauche = gauche
@@ -61,7 +61,7 @@ class AB:
         infixe = []
         if self.getGauche() is not None:
             infixe += self.getGauche().infixe()
-        infixe.append(int(self.getRacine()))  # cast to integer before appending
+        infixe.append(str(self.getRacine()))  # cast to integer before appending
         if self.getDroite() is not None:
             infixe += self.getDroite().infixe()
         return infixe

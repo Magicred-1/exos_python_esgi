@@ -1,0 +1,14 @@
+// Arbre binaire
+digraph {
+	A [label=16]
+	B [label=17]
+	C [label=87]
+	D [label=23]
+	E [label=45]
+	F [label=12]
+	A -> B
+	A -> C
+	B -> D
+	B -> E
+	C -> F
+}
