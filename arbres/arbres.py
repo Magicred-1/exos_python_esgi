@@ -61,7 +61,7 @@ class AB:
         infixe = []
         if self.getGauche() is not None:
             infixe += self.getGauche().infixe()
-        infixe.append(str(self.getRacine()))  # cast to integer before appending
+        infixe.append(self.getRacine())
         if self.getDroite() is not None:
             infixe += self.getDroite().infixe()
         return infixe
@@ -85,7 +85,9 @@ class AB:
         hauteur_gauche = self.getGauche().hauteur() if self.getGauche() is not None else -1
         hauteur_droite = self.getDroite().hauteur() if self.getDroite() is not None else -1
 
-        return 1 + max(hauteur_gauche, hauteur_droite)
+        res = 1 + max(hauteur_gauche, hauteur_droite)
+
+        return res
 
     # Une rotation à gauche consiste à faire monter le fils droit de la racine à la place de la racine
     def rotationGauche(self):
