@@ -31,7 +31,6 @@ class AB:
         if self.racine == [None]:
             return True
         return False
-
         
     # La taille d'un arbre est le nombre de noeuds de l'arbre
     def taille(self):
@@ -47,9 +46,8 @@ class AB:
     # Parcours prefixe : on visite la racine, puis le sous-arbre gauche, puis le sous-arbre droit
     def prefixe(self):
         if self.estVide():
-            return AB([None])
-        prefixe = []
-        prefixe += str(self.getRacine())
+            return []
+        prefixe = [self.getRacine()]
         if self.getGauche() is not None:
             prefixe += self.getGauche().prefixe()
         if self.getDroite() is not None:
@@ -59,36 +57,25 @@ class AB:
     # 
     def infixe(self):
         if self.estVide():
-            return
+            return []
         infixe = []
         if self.getGauche() is not None:
             infixe += self.getGauche().infixe()
-        infixe += str(self.getRacine())
+        infixe.append(int(self.getRacine()))  # cast to integer before appending
         if self.getDroite() is not None:
             infixe += self.getDroite().infixe()
         return infixe
 
     def postfixe(self):
         if self.estVide():
-            return
+            return []
         postfixe = []
         if self.getGauche() is not None:
             postfixe += self.getGauche().postfixe()
         if self.getDroite() is not None:
             postfixe += self.getDroite().postfixe()
-        postfixe += str(self.getRacine())
+        postfixe.append(self.getRacine())
         return postfixe
-
-    def stringPostfixe(self):
-        if self.estVide():
-            return
-        postfixe = self.postfixe()
-        # convert list to string
-        stringPostfixe = '{'
-        stringPostfixe = ','.join(postfixe)
-        stringPostfixe += '}'
-        return stringPostfixe
-
 
     # La hauteur d'un arbre est la longueur du plus long chemin entre la racine et une feuille
     def hauteur(self):
@@ -100,6 +87,7 @@ class AB:
 
         return 1 + max(hauteur_gauche, hauteur_droite)
 
+    # Une rotation à gauche consiste à faire monter le fils droit de la racine à la place de la racine
     def rotationGauche(self):
         if self.getDroite() != None:
             self.setRacine(self.getDroite().getRacine())
@@ -109,6 +97,7 @@ class AB:
             self.getDroite().setDroite(None)
             return self
 
+    # Une rotation à droite consiste à faire monter le fils gauche de la racine à la place de la racine
     def rotationDroite(self):
         if self.getGauche() != None:
             self.setRacine(self.getGauche().getRacine())
